@@ -1,0 +1,29 @@
+Functions:
+operate(operator, num1, num2)
+{
+    a switch case statement can be used
+
+    in case of '+', call sum and send num1 and num2 as arguments
+
+    in case of '-', call subtract and send num1 and num2 as arguments
+
+    in case of '*', call multiply and send num1 and num2 as arguments
+
+    in case of '/', call divide and send num1 and num2 as arguments
+
+    let the default case return nothing
+}
+
+add(num1, num2){return num1 + num2;}
+
+subtract(num1, num2){return num1 - num2;}
+
+multiply(num1, num2){return num1 * num2;}
+
+divide(num1, num2){return num1 / num2;}
+
+
+Button functionality:
+for each number button, add an event listener for an on click event
+upon click, change the inner text of the screen to what is in the corresponding button's inner text
+
