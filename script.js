@@ -22,3 +22,16 @@ function subtract(num1, num2){return num1 - num2;}
 function multiply(num1, num2){return num1 * num2;}
 
 function divide(num1, num2){return num1 / num2;}
+
+
+//Button functionality
+/*const numberButtons = Array.from(document.querySelectorAll(".number-button"));
+
+numberButtons.forEach(numberButton => {addEventListener('click', event => {
+    document.querySelector("#calculator-screen").innerText = numberButton.innerText;
+    console.log(numberButton.innerText);
+});});*/
+document.querySelectorAll(".number-button").forEach(numberButton => 
+    numberButton.addEventListener('click', event => {
+    document.querySelector("#calculator-screen").innerText = event.target.innerText;
+}));
