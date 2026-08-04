@@ -8,30 +8,40 @@
     height: 700px;
 
     border: 8px solid gray;
+    background-color: gainsboro;
     margin: 3rem;
 }
 
 #calculator-screen
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     border: 4px solid gray;
+    background-color: whitesmoke;
 
     margin-left: 2rem;
     margin-right: 2rem;
     margin-top: 2rem;
     margin-bottom: 3rem;
 
-    padding-left: 7rem;
-    padding-right: 7rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
 
-    font-size: 32px;
+    font-size: 48px;
+
+    flex: 0 1 25%;
 }
 
 #calculator-body
 {
     display: flex;
     justify-content: center;
+
+    flex: 0 1 50%;
 }
 
 .number-panel
@@ -79,7 +89,7 @@
 
     font-size: 24px;
 
-    margin-top: 64px;
+    margin-top: 40px;
     margin-bottom: 16px;
     margin-left: 16px;
     margin-right: 16px;
@@ -87,6 +97,8 @@
 
     min-width: 0;
     min-height: 0;
-    aspect-ratio: 9.8/1;
+    aspect-ratio: 3.35/1;
     box-sizing: border-box;
+
+    flex: 0 1 25%;
 }
