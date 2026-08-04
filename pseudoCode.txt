@@ -1,29 +1,117 @@
 Functions:
-operate(operator, num1, num2)
-{
-    a switch case statement can be used
+    operate(operator, num1, num2)
+    {
+        a switch case statement can be used
 
-    in case of '+', call sum and send num1 and num2 as arguments
+        in case of '+', call sum and send num1 and num2 as arguments
 
-    in case of '-', call subtract and send num1 and num2 as arguments
+        in case of '-', call subtract and send num1 and num2 as arguments
 
-    in case of '*', call multiply and send num1 and num2 as arguments
+        in case of '*', call multiply and send num1 and num2 as arguments
 
-    in case of '/', call divide and send num1 and num2 as arguments
+        in case of '/', call divide and send num1 and num2 as arguments
 
-    let the default case return nothing
-}
+        let the default case return nothing
+    }
 
-add(num1, num2){return num1 + num2;}
+    add(num1, num2){return num1 + num2;}
 
-subtract(num1, num2){return num1 - num2;}
+    subtract(num1, num2){return num1 - num2;}
 
-multiply(num1, num2){return num1 * num2;}
+    multiply(num1, num2){return num1 * num2;}
 
-divide(num1, num2){return num1 / num2;}
+    divide(num1, num2){return num1 / num2;}
 
 
 Button functionality:
-for each number button, add an event listener for an on click event
-upon click, change the inner text of the screen to what is in the corresponding button's inner text
+    for each number button, add an event listener for an on click event
+    upon click, change the inner text of the screen to what is in the corresponding button's inner text
 
+    The main feature:
+    Store the first and second numbers input by the user and then operate()
+    on them when the user presses the = button, according to the operator that was selected between the numbers.
+    Populate the display, then once operate has been called, update the display with the result of the operation.
+    Figure out how to store all the values and call the operate function with them. 
+
+        main feature pseudo code:
+            1. introduce a data storage method, an array or string shall do (let it be called "memory"). 
+            2. 3 items go into an operation. For each button the user clicks, add the inner text of that button into memory
+                2.1. make sure multiple digit numbers can be handled
+                2.2. declare another array or string to store each digit of a number
+                2.3. for as long as the user keeps clicking number buttons, attatch the digits accordingly into one number
+                2.3. when the user clicks an operator button, add the number to memory
+                2.4. also add the operator that was used to the memory
+                2.5. the user will enter another number, follow the same kind of process as 2.2 and 2.3 
+                until the equals button is clicked, then calculate and display the result
+            3. however, if the user clicks an operator button (excluidng the equals operator) 
+            after entering one operation (2 numbers and an operator), calculate the result of the first operation
+                3.1. store that result as the first item in the memory and display it to the user, 
+                erasing the rest of the items from the memory
+
+                more detailed version of steps 1-3:
+                    set empty memory array
+
+                    when the user clicks a non number button, first ensure a number has already been stored in memory
+                    {
+                        as long as user keeps clicking number buttons
+                        {
+                            add those number digits to a number string
+                        }
+                        ensure that if the next button click is not a number, it must be an operator besides equals
+                        {
+                            add the number string to the first element of memory
+                        }
+
+                        ensure the next button clicked is a number button
+                        {
+                            as long as the user keeps clicking number buttons
+                            {
+                                add those number digits to a number string
+                            }
+                            ensure that if the next button click is not a number, it must be an operator besides equals
+                            {
+                                add the number string to the last element of memory
+                            }
+                        }
+                    }
+
+                    repeat process above until the equals button is clicked
+
+                    if equals clicked, extract elements from memory and throw them into the appropriate functions to
+                    perform the corresponding calculations and display the results on the calculator screen
+
+
+                more detailed version alternate format:
+                    memory
+
+                    memory[0] contains a number, memory[1] contains an operator, and memory[2] contains a number
+
+                    based on which memory elements are empty, limit user actions (what buttons they can click)
+
+                    clear all data corresponding to what is shown on the calculator screen and start from step #1 
+                    if the clear button is clicked anytime during the following process:
+                    {
+                        1. initially, user can only enter a number, restrict to only be able to add to memory[0] until
+                        at least one digit has been entered and until an operator button (excluding equals) has been clicked
+
+                        2. once an operator button (excluding equals) is clicked, add that operator to memory[1]
+
+                        3. restrict next user action to entering at least one digit, keep adding digits to memory[2] until
+                        user clicks either a non equals operator or the equals operator
+
+                        IN CASE a non equals operator clicked
+                        {
+                            perform operation based on what is currently stored in the memory
+                            display result to user, have that result replace memory[0], empty the rest of memory
+
+                            then user can either continue from step #3 or hit the clear button
+                        }
+
+                        IN CASE equals operator clicked
+                        {
+                            perform operation based on what is currently stored in the memory
+                            display result to user, have that result replace memory[0], empty the rest of memory
+
+                            then user can either continue from step #2 or hit the clear button
+                        }
+                    }
