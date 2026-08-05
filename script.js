@@ -39,7 +39,7 @@ document.querySelector("#clear-button").addEventListener('click', event => {
 document.querySelectorAll(".number-button").forEach(numberButton => 
     numberButton.addEventListener('click', event => {
         //case where there is a digit in the first spot of memory and not an operator in memory or there are no digits 
-        //in the first spot of the memory
+        //in the first spot of the memory, inputting first number of the operation
         if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
         {
             screenContent.innerText += event.target.innerText;
@@ -48,7 +48,7 @@ document.querySelectorAll(".number-button").forEach(numberButton =>
 
             console.log(memory);
         }
-        //case where there is an operator in the memory
+        //case where there is an operator in the memory, inputting second number of the operation
         else if(typeof(memory[1] == "string"))
         {
             if(typeof(memory[2]) != "string")
@@ -84,16 +84,6 @@ document.querySelectorAll(".operator-button").forEach(operatorButton =>
             memory[1] = event.target.innerText;
         }
 
-    /*if(event.target.style.backgroundColor != "darkgray")
-    {
-        event.target.style.backgroundColor = "darkgray";
-        console.log("clicked");
-    }
-    else if(event.target.style.backgroundColor === "darkgray")
-    {
-        event.target.style.backgroundColor = "";
-        console.log("clicked2");
-    }*/ //a code block to be used to show the user the currently selected button
         console.log(memory);
 }));
 
@@ -125,5 +115,60 @@ document.querySelector("#delete-button").addEventListener('click', event => {
     }
 });
 
+document.querySelector("#dot").addEventListener('click', event => {
+    //case where there is a digit in the first spot of memory and not an operator in memory or there are no digits 
+    //in the first spot of the memory, inputting first number of the operation
+    if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
+    {
+        if(typeof(memory[0]) != "string") //allow the user to use the decimal point as a first input
+        {
+            screenContent.innerText = ".";
+            memory[0] = ".";
+        }
+        //allow the user to use the decimal point as a non first input but only once per number 
+        //(only one '.' in a memory slot for a number)
+        else if(!memory[0].includes(".") && typeof(memory[0]) == "string")
+        {
+            screenContent.innerText += ".";
+            memory[0] += ".";
+        }
+
+        console.log(memory);
+    }
+    //case where there is an operator in the memory, inputting second number of the operation
+    else if(typeof(memory[1] == "string"))
+    {
+        if(typeof(memory[2]) != "string")
+        {
+            screenContent.innerText = ".";
+            memory[2] = ".";
+        }
+        else if(!memory[2].includes(".") && typeof(memory[2]) == "string")
+        {
+            screenContent.innerText += ".";
+            memory[2] += ".";
+        }
+
+        console.log(memory);
+    }
+});
+
 
 //keyboard support
+
+
+
+
+
+
+
+/*if(event.target.style.backgroundColor != "darkgray")
+    {
+        event.target.style.backgroundColor = "darkgray";
+        console.log("clicked");
+    }
+    else if(event.target.style.backgroundColor === "darkgray")
+    {
+        event.target.style.backgroundColor = "";
+        console.log("clicked2");
+    }*/ //a code block to be used to show the user the currently selected button
