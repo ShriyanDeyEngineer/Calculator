@@ -26,7 +26,7 @@ function subtract(num1, num2){return num1 - num2;}
 
 function multiply(num1, num2){return num1 * num2;}
 
-function divide(num1, num2){return (num2 == 0) ? "ERROR" : num1 / num2;}
+function divide(num1, num2){return (num2 == 0) ? "NOPE." : num1 / num2;}
 
 
 //Button functionality
@@ -98,12 +98,29 @@ document.querySelectorAll(".operator-button").forEach(operatorButton =>
 }));
 
 document.querySelector("#equals-button").addEventListener('click', event => {
-    if(typeof(memory[2]) == "string")
+    if(typeof(memory[2]) == "string") //only works when the memory is filled
     {
         screenContent.innerText = operate(memory[1], memory[0], memory[2]);
         memory.length = 0;
         memory.length = 3;
         memory[0] = screenContent.innerText;
         memory[1] = event.target.innerText;
+    }
+});
+
+document.querySelector("#delete-button").addEventListener('click', event => {
+    //case where the user can undo part (or the whole) of the first number entry
+    if(typeof(memory[1]) != "string" && memory[0] != "")
+    {
+        screenContent.innerText = screenContent.innerText.slice(0, screenContent.innerText.length - 1);
+        memory[0] = memory[0].slice(0, memory[0].length - 1);
+        console.log(memory);
+    }
+    //case where the user can undo part (or the whole) of the second number entry
+    else if(typeof(memory[1]) == "string" && memory[2] != "")
+    {
+        screenContent.innerText = screenContent.innerText.slice(0, screenContent.innerText.length - 1);
+        memory[2] = memory[2].slice(0, memory[2].length - 1);
+        console.log(memory);
     }
 });
