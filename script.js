@@ -124,3 +124,6 @@ document.querySelector("#delete-button").addEventListener('click', event => {
         console.log(memory);
     }
 });
+
+
+//keyboard support

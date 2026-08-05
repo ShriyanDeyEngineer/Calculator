@@ -74,7 +74,7 @@ button
     cursor: pointer;
 }
 
-.number-button, .operator-button, #equals-button
+.number-button, .operator-button, #equals-button, #dot
 {
     display: flex;
     align-items: center;
