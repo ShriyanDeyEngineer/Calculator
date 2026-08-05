@@ -115,3 +115,19 @@ Button functionality:
                             then user can either continue from step #2 or hit the clear button
                         }
                     }
+    
+
+    "." operator button -> treat it as one of the number buttons so that it can fit into the code already written
+
+    backspace button -> depending on what is present in memory, each time this button is clicked, erase a character from num1 or num2
+
+    for keyboard support, add look for a JavaScript method or parameter for addEventListener that allows key events
+    This code block will help with the keyboard support feature
+    {
+        window.addEventListener("keydown", (event) => {
+            event.preventDefault();
+            console.log(event.key);
+        });
+    }
+
+    For the content mentioned in lines 120-131, implement it into the logic already written in this document.
