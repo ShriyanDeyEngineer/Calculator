@@ -68,7 +68,12 @@
     justify-content: space-between;
 }
 
-.number-button, .operator-button
+button
+{
+    cursor: pointer;
+}
+
+.number-button, .operator-button, #equals-button
 {
     display: flex;
     align-items: center;
