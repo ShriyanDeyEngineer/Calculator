@@ -154,10 +154,139 @@ document.querySelector("#dot").addEventListener('click', event => {
 });
 
 
-//keyboard support
+//keyboard support (copy code from button event listers and replace event.target.innerText with event.key)
+window.addEventListener('keydown', (event) => {
+    event.preventDefault();
+    console.log(event.key);
 
+    switch(event.key) 
+    {
+        case '1': 
+        case '2': 
+        case '3': 
+        case '4': 
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '0':
+            if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
+            {
+                screenContent.innerText += event.key;
 
+                typeof(memory[0]) != "string" ? memory[0] = event.key : memory[0] += event.key;
 
+                console.log(memory);
+            }
+            else if(typeof(memory[1] == "string"))
+            {
+                if(typeof(memory[2]) != "string")
+                {
+                    screenContent.innerText = "";
+                    screenContent.innerText += event.key;
+                    memory[2] = event.key;
+                }
+                else
+                {
+                    screenContent.innerText += event.key;
+                    memory[2] += event.key;
+                }
+
+                console.log(memory);
+            }
+            break;
+
+        case '.':
+            if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
+            {
+                if(typeof(memory[0]) != "string")
+                {
+                    screenContent.innerText = ".";
+                    memory[0] = ".";
+                }
+                else if(!memory[0].includes(".") && typeof(memory[0]) == "string")
+                {
+                    screenContent.innerText += ".";
+                    memory[0] += ".";
+                }
+
+                console.log(memory);
+            }
+            else if(typeof(memory[1] == "string"))
+            {
+                if(typeof(memory[2]) != "string")
+                {
+                    screenContent.innerText = ".";
+                    memory[2] = ".";
+                }
+                else if(!memory[2].includes(".") && typeof(memory[2]) == "string")
+                {
+                    screenContent.innerText += ".";
+                    memory[2] += ".";
+                }
+
+                console.log(memory);
+            }
+            break;
+
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            if(typeof(memory[0]) == "string" && typeof(memory[2]) != "string"){memory[1] = event.key;}
+            else if(typeof(memory[2] == "string"))
+            {
+                screenContent.innerText = operate(memory[1], memory[0], memory[2]);
+                memory.length = 0;
+                memory.length = 3;
+                memory[0] = screenContent.innerText;
+                memory[1] = event.key;
+            }
+
+            console.log(memory);
+            break;
+
+        case 'Enter':
+            if(typeof(memory[2]) == "string") //only works when the memory is filled
+            {
+                screenContent.innerText = operate(memory[1], memory[0], memory[2]);
+                memory.length = 0;
+                memory.length = 3;
+                memory[0] = screenContent.innerText;
+                memory[1] = event.key;
+            }
+            break;
+
+        case 'Backspace':
+            if(typeof(memory[1]) != "string" && memory[0] != "")
+            {
+                screenContent.innerText = screenContent.innerText.slice(0, screenContent.innerText.length - 1);
+                memory[0] = memory[0].slice(0, memory[0].length - 1);
+                console.log(memory);
+            }
+            else if(typeof(memory[1]) == "string" && memory[2] != "")
+            {
+                screenContent.innerText = screenContent.innerText.slice(0, screenContent.innerText.length - 1);
+                memory[2] = memory[2].slice(0, memory[2].length - 1);
+                console.log(memory);
+            }
+            break;
+
+        case 'c':
+            screenContent.innerText = "";
+            memory.length = 0;
+            memory.length = 3;
+            break;
+
+        default: return;
+    }
+});
+
+window.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log(event.target);
+});
 
 
 
