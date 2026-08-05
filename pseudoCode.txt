@@ -117,7 +117,8 @@ Button functionality:
                     }
     
 
-    "." operator button -> treat it as one of the number buttons so that it can fit into the code already written
+    "." operator button -> do not treat as a number button, give it its own event listener and make 
+    sure only one decimal point can be used per number
 
     backspace button -> depending on what is present in memory, each time this button is clicked, erase a character from num1 or num2
 
