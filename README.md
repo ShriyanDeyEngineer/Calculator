@@ -5,5 +5,5 @@ Sound effect sources:
 SFX for button/key inputs: https://www.myinstants.com/en/instant/hitmarkermp3/
 SFX for divide by zero error message: https://www.myinstants.com/en/instant/fart-with-reverb-17715/
 
-Also, I used this website to help one of the audio files become compatible with common web browsers:
+Also, I used this website to help one of the audio files become compatible with common web browsers by increasing its bit rate:
 https://audioeditor.org/
