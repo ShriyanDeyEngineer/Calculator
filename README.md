@@ -7,3 +7,6 @@ SFX for divide by zero error message: https://www.myinstants.com/en/instant/fart
 
 Also, I used this website to help one of the audio files become compatible with common web browsers by increasing its bit rate:
 https://audioeditor.org/
+
+
+Link to the calculator: https://shriyandeyengineer.github.io/Calculator/
