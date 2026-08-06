@@ -1,7 +1,9 @@
 //variable declarations
 let memory = new Array(3);
 let screenContent = document.querySelector("#calculator-screen");
-const audio = new Audio('./hitmarker_2.mp3'); //juicy hit marker noise for each time the user clicks or types a key (why not?)
+const userInputSFX = new Audio('./media/hitMarker.mp3');
+const errorSFX = new Audio('./media/oops.mp3');
+errorSFX.play();
 
 
 //functions
@@ -28,7 +30,16 @@ function subtract(num1, num2){return (num1 - num2).toFixed(3);}
 
 function multiply(num1, num2){return (num1 * num2).toFixed(3);}
 
-function divide(num1, num2){return (num2 == 0) ? "NOPE." : (num1 / num2).toFixed(3);}
+function divide(num1, num2)
+{
+    if(num2 == 0)
+    {
+        errorSFX.currentTime = 0;
+        errorSFX.play();
+        return "NOPE."
+    }
+    else{return (num1 / num2).toFixed(3);}
+}
 
 function exponentiate(num1, num2){return (num1 ** num2).toFixed(3);}
 
@@ -305,7 +316,8 @@ document.querySelectorAll("button").forEach(button => {
 
 function selectedIndicator(selectedCalculatorButton)
 {
-    audio.play();
+    userInputSFX.currentTime = 0;
+    userInputSFX.play();
 
     if(selectedCalculatorButton.type == 'click') //case where the button on the screen is clicked
     {
