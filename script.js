@@ -1,6 +1,7 @@
 //variable declarations
 let memory = new Array(3);
 let screenContent = document.querySelector("#calculator-screen");
+const audio = new Audio('./hitmarker_2.mp3'); //juicy hit marker noise for each time the user clicks or types a key (why not?)
 
 
 //functions
@@ -16,6 +17,7 @@ function operate(operator, num1, num2)
         case '-': return subtract(num1, num2);
         case '*': return multiply(num1, num2);
         case '/': return divide(num1, num2);
+        case '^': return exponentiate(num1, num2);
         default: return;
     }
 }
@@ -28,6 +30,8 @@ function multiply(num1, num2){return (num1 * num2).toFixed(3);}
 
 function divide(num1, num2){return (num2 == 0) ? "NOPE." : (num1 / num2).toFixed(3);}
 
+function exponentiate(num1, num2){return (num1 ** num2).toFixed(3);}
+
 
 //Button functionality
 document.querySelector("#clear-button").addEventListener('click', event => {
@@ -38,6 +42,7 @@ document.querySelector("#clear-button").addEventListener('click', event => {
 
 document.querySelectorAll(".number-button").forEach(numberButton => 
     numberButton.addEventListener('click', event => {
+        console.log(event);
         //case where there is a digit in the first spot of memory and not an operator in memory or there are no digits 
         //in the first spot of the memory, inputting first number of the operation
         if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
@@ -171,6 +176,7 @@ window.addEventListener('keydown', (event) => {
         case '8':
         case '9':
         case '0':
+            selectedIndicator(event);
             if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
             {
                 screenContent.innerText += event.key;
@@ -198,6 +204,7 @@ window.addEventListener('keydown', (event) => {
             break;
 
         case '.':
+            selectedIndicator(event);
             if((typeof(memory[0]) == "string" && typeof(memory[1]) != "string") || typeof(memory[0]) != "string")
             {
                 if(typeof(memory[0]) != "string")
@@ -234,6 +241,8 @@ window.addEventListener('keydown', (event) => {
         case '-':
         case '*':
         case '/':
+        case '^':
+            selectedIndicator(event);
             if(typeof(memory[0]) == "string" && typeof(memory[2]) != "string"){memory[1] = event.key;}
             else if(typeof(memory[2] == "string"))
             {
@@ -248,6 +257,7 @@ window.addEventListener('keydown', (event) => {
             break;
 
         case 'Enter':
+            selectedIndicator(event);
             if(typeof(memory[2]) == "string") //only works when the memory is filled
             {
                 screenContent.innerText = operate(memory[1], memory[0], memory[2]);
@@ -259,6 +269,7 @@ window.addEventListener('keydown', (event) => {
             break;
 
         case 'Backspace':
+            selectedIndicator(event);
             if(typeof(memory[1]) != "string" && memory[0] != "")
             {
                 screenContent.innerText = screenContent.innerText.slice(0, screenContent.innerText.length - 1);
@@ -274,6 +285,7 @@ window.addEventListener('keydown', (event) => {
             break;
 
         case 'c':
+            selectedIndicator(event);
             screenContent.innerText = "";
             memory.length = 0;
             memory.length = 3;
@@ -283,21 +295,28 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
-window.addEventListener('click', (event) => {
-    event.preventDefault();
-    console.log(event.target);
+
+//Change the button color for the buttons that have no indication that they have been selected
+document.querySelectorAll("button").forEach(button => {
+    button.addEventListener('click', event => {
+        selectedIndicator(event);
+    });
 });
 
+function selectedIndicator(selectedCalculatorButton)
+{
+    audio.play();
 
-
-
-/*if(event.target.style.backgroundColor != "darkgray")
+    if(selectedCalculatorButton.type == 'click') //case where the button on the screen is clicked
     {
-        event.target.style.backgroundColor = "darkgray";
-        console.log("clicked");
+        document.querySelectorAll("button").forEach(button => {button.style.backgroundColor = "rgb(189, 203, 220)";});
+        selectedCalculatorButton.target.style.backgroundColor = "rgb(209, 21, 21)";
     }
-    else if(event.target.style.backgroundColor === "darkgray")
+    else if(selectedCalculatorButton.type == 'keydown') //case where the key corresponding to the button on the screen is clicked
     {
-        event.target.style.backgroundColor = "";
-        console.log("clicked2");
-    }*/ //a code block to be used to show the user the currently selected button
+        document.querySelectorAll("button").forEach(button => {
+            if(button.innerText == selectedCalculatorButton.key){button.style.backgroundColor = "rgb(209, 21, 21)";}
+            else{button.style.backgroundColor = "rgb(189, 203, 220)";}
+        });
+    }
+}

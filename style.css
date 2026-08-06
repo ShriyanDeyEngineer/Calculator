@@ -1,3 +1,15 @@
+body
+{
+    display: flex;
+    gap: 8px;
+    background-color: burlywood;
+}
+
+#instructions
+{
+    margin-top: 32px;
+}
+
 #calculator-frame
 {
     display: flex;
@@ -71,7 +83,9 @@
 
 button
 {
-    cursor: pointer;
+    cursor: crosshair;
+    border: solid 2px black;
+    background-color: rgb(189, 203, 220);
 }
 
 .number-button, .operator-button, #equals-button, #dot
