@@ -47,6 +47,8 @@ body
     padding-bottom: 2rem;
 
     font-size: 48px;
+    color: black;
+    overflow: hidden;
 
     flex: 0 1 25%;
 }
@@ -86,6 +88,7 @@ button
     cursor: crosshair;
     border: solid 2px black;
     background-color: rgb(189, 203, 220);
+    color: black;
 }
 
 .number-button, .operator-button, #equals-button, #dot
